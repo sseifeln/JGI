@@ -20,3 +20,8 @@ def loadProccessedData(dirName=''):
 	# drop the un-named column
 	processedData = processedData.drop(['Unnamed: 0'], axis=1)
 	return processedData
+
+def mergeDataSources(proc_data, codes):
+	mergedData= proc_data.merge( codes , on=['PCT','pcstrip','SHA'])
+	mergedData = mergedData.rename(index=str, columns={"pcstrip": "Postcode"})
+	return mergedData
